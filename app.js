@@ -1,21 +1,29 @@
 var express = require('express');
-var mongoose = require('mongoose');
 var http = require('http');
 var path = require('path');
 
 var app = express();
 
 app.configure(function() {
-  app.use(app.router);
-  app.use(express.errorHandler());
+app.use(express.errorHandler());
+app.use(express.bodyParser());
+app.use(app.router);
+
 });
 
 var User = require('./models/User');
 
-app.get('/', function(req, res) {
-  res.setHeader("Content-Type", "application/json");
-  res.end(JSON.stringify({users: User.all()}));
-});
+var users = require('./routes/users')
+
+app.get('/users', users.collection);
+
+app.get('/users/:id', users.findById);
+
+app.post('/users', users.newUser);
+
+app.put('/users/:id', users.updateUser);
+
+app.delete('/users/:id', users.deleteUser);
 
 var server = http.createServer(app);
 
