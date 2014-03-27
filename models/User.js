@@ -1,5 +1,9 @@
-mongoose = require('mongoose');
+'use strict';
+//jshint unused:false
 mongoose.connect('mongodb://localhost/oaa');
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/blog');
 
 var schema = new mongoose.Schema({
   first_name: String,

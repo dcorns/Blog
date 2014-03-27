@@ -1,15 +1,20 @@
 'use strict';
+//jshint unused:false
 
 var superagent = require('superagent');
-var expect = require('expect.js');
-var app = require('../app').app
+var chai = require('chai'),
+    expect = chai.expect,
+    should = chai.should();
+var app = require('../app').app;
+
+
 
 describe('Users JSON api', function(){
   var id;
 
   it('can create a new user', function(done){
     superagent.post('http://localhost:3000/users')
-      .send({first_name: "Ford", last_name: "Prefect"})
+      .send({first_name: 'Ford', last_name: 'Prefect'})
       .end(function(e, res){
         expect(e).to.eql(null)
         expect(res.body._id).to.not.be.eql(null)
@@ -42,7 +47,7 @@ describe('Users JSON api', function(){
    });
  
    it('can update a user', function(done){
-     superagent.put('http://localhost:3000/users/' + id).send({first_name: "Arthur", last_name: "Dent"})
+     superagent.put('http://localhost:3000/users/' + id).send({first_name: 'Arthur', last_name: 'Dent'})
      .end(function(e,res){
        expect(e).to.eql(null);
        expect(res.body.msg).to.be.eql('success');
