@@ -1,4 +1,4 @@
 blog
 ====
 
-A blogging site
+A blogging/forum site
